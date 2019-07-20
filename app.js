@@ -9,21 +9,56 @@ L.tileLayer(
     attribution:
       'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
-    id: 'mapbox.satellite', // mapbox.streets
+    id: 'mapbox.streets', // mapbox.streets | mapbox.satellite
     accessToken: 'your.mapbox.access.token',
   },
 ).addTo(mymap);
 
 /**
+ * Icon
+ * https://leafletjs.com/reference.html#icon
+ */
+var greenIcon = L.icon({
+  iconUrl: './images/leaf-green.png',
+  shadowUrl: './images/leaf-shadow.png',
+
+  iconSize: [38, 95], // size of the icon
+  shadowSize: [50, 64], // size of the shadow
+  iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+  shadowAnchor: [4, 62], // the same for the shadow
+  popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+});
+
+// Icon Class としても定義可能
+var LeafIcon = L.Icon.extend({
+  options: {
+    shadowUrl: './images/leaf-shadow.png',
+    iconSize: [38, 95],
+    shadowSize: [50, 64],
+    iconAnchor: [22, 94],
+    shadowAnchor: [4, 62],
+    popupAnchor: [-3, -76],
+  },
+});
+const redIcon = new LeafIcon({ iconUrl: './images/leaf-red.png' });
+
+/**
  * Marker
  */
-const marker1 = L.marker([35.69432984468491, 139.74267643565133]).addTo(mymap);
-const marker2 = L.marker([35.65924891619007, 139.68429565429688]).addTo(mymap);
+const marker1 = L.marker([35.67932984468491, 139.76267643565133]).addTo(mymap);
+const marker2 = L.marker([35.69432984468491, 139.74267643565133], {
+  icon: greenIcon,
+}).addTo(mymap);
+const marker3 = L.marker([35.65924891619007, 139.68429565429688], {
+  icon: redIcon,
+}).addTo(mymap);
 
 // Popup (デフォルトで表示)
 marker1.bindPopup('<b>Hello world!</b><br>I am a popup.').openPopup();
 // Popup (クリックで表示)
-marker2.bindPopup('<b>Hello world!</b><br>I am a popup.');
+marker2.bindPopup('<b>Hello world!</b><br>I am a popup and custom icon');
+// Popup (クリックで表示)
+marker3.bindPopup('<b>Hello world!</b><br>I am a popup and custom icon.');
 
 /**
  * Circle
