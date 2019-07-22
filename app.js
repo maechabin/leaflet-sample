@@ -18,7 +18,7 @@ L.tileLayer(
  * Icon
  * https://leafletjs.com/reference.html#icon
  */
-var greenIcon = L.icon({
+const greenIcon = L.icon({
   iconUrl: './images/leaf-green.png',
   shadowUrl: './images/leaf-shadow.png',
 
@@ -30,7 +30,7 @@ var greenIcon = L.icon({
 });
 
 // Icon Class としても定義可能
-var LeafIcon = L.Icon.extend({
+const LeafIcon = L.Icon.extend({
   options: {
     shadowUrl: './images/leaf-shadow.png',
     iconSize: [38, 95],
@@ -106,3 +106,39 @@ function onMapClick(e) {
 }
 
 mymap.on('click', onMapClick);
+
+/**
+ * GeoJSON
+ * types: 'Point' | 'LineString' | 'Polygon' | 'MultiPoint' | 'MultiLineString' | 'MultiPolygon' | 'GeometryCollection'
+ */
+const someFeatures = [
+  {
+    type: 'Feature',
+    properties: {
+      name: 'Coors Field',
+      show_on_map: true,
+    },
+    geometry: {
+      type: 'Point',
+      coordinates: [139.73267643565133, 35.63432984468491],
+    },
+  },
+  {
+    type: 'Feature',
+    properties: {
+      name: 'Busch Field',
+      show_on_map: true,
+    },
+    geometry: {
+      type: 'Point',
+      coordinates: [139.75267643565133, 35.6332984468491],
+    },
+  },
+];
+
+L.geoJSON(someFeatures, {
+  filter(feature, layer) {
+    console.log(feature);
+    return feature.properties.show_on_map;
+  },
+}).addTo(mymap);
