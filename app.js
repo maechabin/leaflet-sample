@@ -142,3 +142,9 @@ L.geoJSON(someFeatures, {
     return feature.properties.show_on_map;
   },
 }).addTo(mymap);
+
+/**
+ * Interactive Choropleth Map (インタラクティブな階級区分図)
+ */
+console.log(statesData);
+const geojson = L.geoJson(statesData).addTo(mymap);
