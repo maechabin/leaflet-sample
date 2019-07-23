@@ -144,6 +144,34 @@ L.geoJSON(someFeatures, {
 }).addTo(mymap);
 
 /**
+ * Custom Control
+ */
+const info = L.control();
+
+info.onAdd = function(map) {
+  this._div = L.DomUtil.create('div', 'info');
+  this.update();
+  return this._div;
+};
+
+info.update = function(props) {
+  this._div.innerHTML =
+    `<h4>Population Density</h4>` +
+    (props
+      ? `
+        <b>${props.name}</b><br />
+        ${props.density} people / mi<sup>2</sup>
+      `
+      : `Hover over a state`);
+};
+
+info.addTo(mymap);
+info.update({
+  name: 'Tokyo',
+  density: '6,309.78',
+});
+
+/**
  * Interactive Choropleth Map (インタラクティブな階級区分図)
  */
 console.log(statesData);
