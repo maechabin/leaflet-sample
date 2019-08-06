@@ -1,0 +1,28 @@
+{
+  "name": "leaflet-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "ts": "parcel ./src/app.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maechabin/leaflet-sample.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maechabin/leaflet-sample/issues"
+  },
+  "homepage": "https://github.com/maechabin/leaflet-sample#readme",
+  "dependencies": {
+    "@types/leaflet": "^1.5.0",
+    "leaflet": "^1.5.1"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3",
+    "typescript": "^3.5.3"
+  }
+}
