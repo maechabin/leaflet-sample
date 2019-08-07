@@ -1,9 +1,14 @@
-import L from 'leaflet';
+import L, { LatLng } from 'leaflet';
 
-const mymap = L.map('map').setView(
-  [35.69432984468491, 139.74267643565133],
-  12,
-);
+declare module 'leaflet' {
+  interface TileLayerOptions {
+    id: 'mapbox.streets' | 'mapbox.satellite';
+    accessToken: string;
+  }
+  interface LeafletEvent {
+    latlng: LatLng;
+  }
+}
 
 /**
  * Layer
