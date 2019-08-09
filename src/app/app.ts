@@ -1,4 +1,4 @@
-import L, { LatLng } from 'leaflet';
+import L, { LatLng, LeafletEvent } from 'leaflet';
 
 declare module 'leaflet' {
   interface TileLayerOptions {
@@ -54,7 +54,7 @@ mymap.locate({
   watch: true,
   enableHighAccuracy: true,
 });
-mymap.on('locationfound', (data) => {
+mymap.on('locationfound', (data: LeafletEvent) => {
   console.log(`現在地を取得しました: ${data.latlng.lat}, ${data.latlng.lng}`);
 });
 
